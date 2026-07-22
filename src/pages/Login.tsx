@@ -48,7 +48,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-tag border-2 border-ink-950/20 bg-white px-4 py-2.5 font-body text-ink-950 placeholder:text-ink-700/40 focus:border-ink-950 focus:outline-none"
-              placeholder="tu@nexlum.site"
+              placeholder="correo@gmail.com"
             />
           </div>
 
