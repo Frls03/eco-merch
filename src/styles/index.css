@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  ::selection {
+    background-color: theme('colors.amber.500');
+    color: theme('colors.ink.950');
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: theme('fontFamily.display');
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Tarjeta estilo "stub" de boleto, ligeramente rotada, con sombra sólida */
+  .card-stub {
+    @apply rounded-stub border-2 border-ink-950 bg-paper text-ink-950 shadow-stub;
+  }
+
+  /* Variante oscura del stub, para secciones que viven sobre el fondo ink (ej. panel de usuarios) */
+  .card-stub-dark {
+    @apply rounded-stub border-2 border-paper/25 bg-ink-900 text-paper shadow-none;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-tag border-2 border-ink-950 bg-amber-500
+      px-5 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-ink-950
+      shadow-stub-sm transition-transform duration-100 hover:-translate-y-0.5 active:translate-y-0
+      active:shadow-none disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-tag border-2 border-paper/40 bg-transparent
+      px-5 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-paper
+      transition-colors duration-100 hover:border-paper hover:bg-paper/10
+      disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-tag border-2 border-ink-950 bg-coral-500
+      px-4 py-2 font-body text-sm font-bold uppercase tracking-wide text-ink-950
+      shadow-stub-sm transition-transform duration-100 hover:-translate-y-0.5 active:translate-y-0
+      active:shadow-none disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .input-field {
+    @apply w-full rounded-tag border-2 border-ink-700 bg-ink-900 px-4 py-2.5 font-body text-paper
+      placeholder:text-paper/40 focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/20;
+  }
+
+  .badge-pill {
+    @apply inline-flex items-center gap-1.5 rounded-chip border-2 border-ink-950 bg-mint-400
+      px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-ink-950;
+  }
+}
