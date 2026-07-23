@@ -1,6 +1,6 @@
 # Nexlum Merch — Control de stock en tiempo real
 
-Aplicación web para controlar la disponibilidad de merch (Hoodies por talla, Tot Bags
+Aplicación web para controlar la disponibilidad de merch (Hoodies por talla, Tote Bags
 por color) durante el evento. La persona en bodega descuenta stock con un click al
 entregar cada producto, y una pantalla pública en el stand (frente a la cafetería)
 muestra la disponibilidad actualizándose sola, en tiempo real, sin recargar la página.

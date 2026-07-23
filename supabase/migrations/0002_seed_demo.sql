@@ -9,7 +9,7 @@ with hoodie as (
   returning id
 ),
 totbag as (
-  insert into public.products (name, type) values ('Tot Bag Evento', 'totbag')
+  insert into public.products (name, type) values ('Tote Bag Evento', 'totbag')
   returning id
 )
 insert into public.variants (product_id, attribute_type, attribute_value, stock_initial, stock_current)

@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { useInventory, type ProductWithVariants } from '@/hooks/useInventory';
 import type { ProductType, Variant } from '@/lib/database.types';
 
-const TYPE_LABEL: Record<ProductType, string> = { hoodie: 'Hoodie', totbag: 'Tot Bag' };
+const TYPE_LABEL: Record<ProductType, string> = { hoodie: 'Hoodie', totbag: 'Tote Bag' };
 const ATTRIBUTE_LABEL: Record<ProductType, string> = { hoodie: 'Talla', totbag: 'Color' };
 
 function NewProductForm({ onCreated }: { onCreated: () => void }) {
@@ -47,7 +47,7 @@ function NewProductForm({ onCreated }: { onCreated: () => void }) {
           className="w-full rounded-tag border-2 border-ink-950/20 bg-white px-4 py-2.5 font-body text-ink-950 focus:border-ink-950 focus:outline-none sm:w-40"
         >
           <option value="hoodie">Hoodie (talla)</option>
-          <option value="totbag">Tot Bag (color)</option>
+          <option value="totbag">Tote Bag (color)</option>
         </select>
       </div>
       <button type="submit" disabled={busy} className="btn-primary">
@@ -62,22 +62,32 @@ function NewVariantForm({ product, onCreated }: { product: ProductWithVariants; 
   const [value, setValue] = useState('');
   const [stock, setStock] = useState<number>(0);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!value.trim()) return;
     setBusy(true);
-    await supabase.from('variants').insert({
+    setError(null);
+    const { error } = await supabase.from('variants').insert({
       product_id: product.id,
       attribute_type: product.type === 'hoodie' ? 'talla' : 'color',
       attribute_value: value.trim(),
       stock_initial: stock,
       stock_current: stock,
     });
-    setValue('');
-    setStock(0);
+    if (error) {
+      setError(
+        error.code === '23505'
+          ? `Ya existe "${value.trim()}" para este producto.`
+          : error.message,
+      );
+    } else {
+      setValue('');
+      setStock(0);
+      onCreated();
+    }
     setBusy(false);
-    onCreated();
   }
 
   return (
@@ -108,6 +118,7 @@ function NewVariantForm({ product, onCreated }: { product: ProductWithVariants; 
       <button type="submit" disabled={busy} className="btn-primary !px-4 !py-2 !text-xs">
         {busy ? '…' : '+ Variante'}
       </button>
+      {error && <p className="basis-full font-body text-xs font-semibold text-coral-600">{error}</p>}
     </form>
   );
 }

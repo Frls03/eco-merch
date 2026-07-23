@@ -27,7 +27,7 @@ create table if not exists public.profiles (
 comment on table public.profiles is 'Perfil y rol de cada usuario (admin o vendedor).';
 
 -- ----------------------------------------------------------------------------
--- 2. Productos (Hoodie, Tot Bag, ...)
+-- 2. Productos (Hoodie, Tote Bag, ...)
 -- ----------------------------------------------------------------------------
 do $$
 begin
@@ -49,7 +49,7 @@ create table if not exists public.products (
 );
 
 -- ----------------------------------------------------------------------------
--- 3. Variantes (talla para hoodies, color para tot bags)
+-- 3. Variantes (talla para hoodies, color para tote bags)
 -- ----------------------------------------------------------------------------
 create table if not exists public.variants (
   id              uuid primary key default gen_random_uuid(),
