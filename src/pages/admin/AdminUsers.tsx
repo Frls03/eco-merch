@@ -91,9 +91,7 @@ function InviteUserForm({ onCreated }: { onCreated: () => void }) {
         </p>
       )}
       <p className="font-body text-xs text-ink-700/70 sm:col-span-4">
-        Nota: si tu proyecto de Supabase tiene activada la confirmación por correo, la
-        persona deberá confirmar su email antes de poder ingresar. Para un evento interno
-        puedes desactivarlo en Supabase → Authentication → Providers → Email.
+        
       </p>
     </form>
   );
