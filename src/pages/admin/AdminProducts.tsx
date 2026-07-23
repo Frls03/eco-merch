@@ -144,7 +144,9 @@ function VariantEditRow({ variant, onUpdated }: { variant: Variant; onUpdated: (
 
   return (
     <div className="flex items-center justify-between gap-3 py-2.5 text-sm">
-      <span className="w-16 shrink-0 font-mono font-bold text-ink-950">{variant.attribute_value}</span>
+      <span className="min-w-16 shrink-0 whitespace-nowrap font-mono font-bold text-ink-950">
+        {variant.attribute_value}
+      </span>
       <span className="flex-1 font-body text-ink-700">
         Inicial: <strong className="text-ink-950">{variant.stock_initial}</strong>
       </span>

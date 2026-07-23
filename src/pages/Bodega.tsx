@@ -24,7 +24,7 @@ function VariantRow({ variant, onDeliver }: { variant: Variant; onDeliver: (v: V
   return (
     <div className="flex flex-col gap-3 border-b-2 border-ink-800 py-4 last:border-0 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
-        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-tag border-2 border-ink-700 bg-ink-900 font-mono text-sm font-bold text-paper">
+        <span className="inline-flex h-12 min-w-12 shrink-0 items-center justify-center whitespace-nowrap rounded-tag border-2 border-ink-700 bg-ink-900 px-2 font-mono text-sm font-bold text-paper">
           {variant.attribute_value}
         </span>
         <div className="min-w-0 flex-1 sm:w-48">
