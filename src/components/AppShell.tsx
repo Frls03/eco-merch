@@ -14,7 +14,7 @@ export function AppShell({ children, navItems }: { children: ReactNode; navItems
   return (
     <div className="min-h-screen bg-ink-950">
       <header className="sticky top-0 z-20 border-b-2 border-ink-800 bg-ink-950/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-2.5 py-3 sm:px-6">
           <Logo />
 
           {navItems.length > 0 && (
@@ -55,7 +55,7 @@ export function AppShell({ children, navItems }: { children: ReactNode; navItems
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">{children}</main>
+      <main className="mx-auto max-w-6xl px-2.5 py-6 sm:px-6 sm:py-8">{children}</main>
     </div>
   );
 }
