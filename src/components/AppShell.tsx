@@ -14,11 +14,27 @@ export function AppShell({ children, navItems }: { children: ReactNode; navItems
   return (
     <div className="min-h-screen bg-ink-950">
       <header className="sticky top-0 z-20 border-b-2 border-ink-800 bg-ink-950/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-2.5 py-3 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-3 gap-y-2 px-2.5 py-3 sm:flex-nowrap sm:px-6">
           <Logo />
 
+          <div className="order-2 flex shrink-0 items-center gap-3 sm:order-none">
+            {profile && (
+              <div className="hidden text-right sm:block">
+                <p className="font-body text-sm font-semibold leading-tight text-paper">
+                  {profile.full_name}
+                </p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-amber-400">
+                  {profile.role}
+                </p>
+              </div>
+            )}
+            <button onClick={signOut} className="btn-secondary !px-3 !py-1.5 !text-xs">
+              Salir
+            </button>
+          </div>
+
           {navItems.length > 0 && (
-            <nav className="flex items-center gap-1 rounded-chip border-2 border-ink-800 bg-ink-900 p-1">
+            <nav className="order-3 flex w-full items-center justify-center gap-1 rounded-chip border-2 border-ink-800 bg-ink-900 p-1 sm:order-none sm:w-auto sm:justify-start">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
@@ -36,22 +52,6 @@ export function AppShell({ children, navItems }: { children: ReactNode; navItems
               ))}
             </nav>
           )}
-
-          <div className="flex items-center gap-3">
-            {profile && (
-              <div className="hidden text-right sm:block">
-                <p className="font-body text-sm font-semibold leading-tight text-paper">
-                  {profile.full_name}
-                </p>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-amber-400">
-                  {profile.role}
-                </p>
-              </div>
-            )}
-            <button onClick={signOut} className="btn-secondary !px-3 !py-1.5 !text-xs">
-              Salir
-            </button>
-          </div>
         </div>
       </header>
 

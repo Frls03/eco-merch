@@ -52,9 +52,11 @@ function VariantRow({ variant, onDeliver }: { variant: Variant; onDeliver: (v: V
 function ProductGroup({ product, onDeliver }: { product: ProductWithVariants; onDeliver: (v: Variant) => void }) {
   return (
     <div className="card-stub p-5 sm:p-6">
-      <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-display text-xl font-semibold text-ink-950">{product.name}</h2>
-        <span className="badge-pill">{product.type === 'hoodie' ? 'Talla' : 'Color'}</span>
+      <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+        <h2 className="min-w-0 flex-1 break-words font-display text-xl font-semibold text-ink-950">
+          {product.name}
+        </h2>
+        <span className="badge-pill shrink-0">{product.type === 'hoodie' ? 'Talla' : 'Color'}</span>
       </div>
       <div>
         {product.variants.map((v) => (
