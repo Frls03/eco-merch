@@ -5,7 +5,7 @@ import { adjustStock, useInventory, type ProductWithVariants } from '@/hooks/use
 import { useAuth } from '@/hooks/useAuth';
 import type { Variant } from '@/lib/database.types';
 
-const NAV_ITEMS = [
+const BASE_NAV_ITEMS = [
   { to: '/bodega', label: 'Bodega' },
   { to: '/stand', label: 'Stand' },
 ];
@@ -76,6 +76,8 @@ export default function Bodega() {
   const { products, loading, error } = useInventory();
   const { profile } = useAuth();
   const [feedback, setFeedback] = useState<string | null>(null);
+  const navItems =
+    profile?.role === 'admin' ? [{ to: '/admin', label: 'Panel' }, ...BASE_NAV_ITEMS] : BASE_NAV_ITEMS;
 
   async function handleDeliver(variant: Variant) {
     const { error } = await adjustStock(variant.id, -1, `Entrega registrada por ${profile?.full_name ?? 'vendedor'}`);
@@ -87,7 +89,7 @@ export default function Bodega() {
   }
 
   return (
-    <AppShell navItems={NAV_ITEMS}>
+    <AppShell navItems={navItems}>
       <div className="mb-6">
         <h1 className="font-display text-2xl font-semibold text-paper sm:text-3xl">
           Entregas en bodega
